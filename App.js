@@ -5,7 +5,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
-import Home from './Screens/Home'
+import Home from './Screens/Home';
+import Feed from './Screens/Feed';
 
 const Stack = createStackNavigator();
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name='Home' component={Home} />
+        <Stack.Screen name='Feed' component={Feed} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from '../Components/Login';
 
-export default function Home(props) {
+export default function Home() {
     return (
         <View style={style.root}>
          <Text style={style.header}>Welcome to SocialOne</Text>

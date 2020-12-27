@@ -11,10 +11,10 @@ function SignIn({signIn}) {
     const handleSignIn = () => {
         console.log(form)
         axios.post('https://social-1.herokuapp.com/api/login', form).then(res => {
-            console.log(res)
             signIn(res.data);
             navigation.navigate('Feed')
         }).catch(err => {
+            alert("We didnt find an account with these credentials please try again.")
             console.log({err})
         })
         

@@ -19,7 +19,7 @@ export const reducer = (state=initialState, action) => {
         case"SIGN_IN":
             return {
                 ...state,
-                userData: action.payload
+                userData: action.payload.userData,
             }
         case "ADD_POST":
             return {

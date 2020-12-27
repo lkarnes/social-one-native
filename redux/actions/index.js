@@ -3,6 +3,13 @@
 export const signIn = (payload) => {
     return {
         payload: payload,
-        action: "SIGN_IN"
+        type: "SIGN_IN"
+    }
+}
+
+export const fillFeed = (payload) => {
+    return {
+        payload: payload,
+        type: "FILL_FEED"
     }
 }

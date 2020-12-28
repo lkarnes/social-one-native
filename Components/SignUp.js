@@ -44,6 +44,12 @@ export default function SignUp() {
 }
 
 const style = StyleSheet.create({
+    header: {
+        fontSize: 30,
+        color: 'white',
+        marginLeft: 5,
+        fontWeight: 600,
+    },
     form: {
         width: '95%',
         marginVertical: 20,

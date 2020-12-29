@@ -30,7 +30,8 @@ function Feed({userData, token, fillFeed}) {
 
 const mapStateToProps = state => ({
     userData : state.userData,
-    token: state.token
+    token: state.token,
+    feedArray: state.feedArray,
 })
 
 export default connect(mapStateToProps, {fillFeed})(Feed);

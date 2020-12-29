@@ -12,7 +12,7 @@ function SignIn({signIn}) {
         console.log(form)
         axios.post('https://social-1.herokuapp.com/api/login', form).then(res => {
             signIn(res.data);
-            navigation.navigate('Feed')
+            navigation.navigate('Feed'); 
         }).catch(err => {
             alert("We didnt find an account with these credentials please try again.")
             console.log({err})

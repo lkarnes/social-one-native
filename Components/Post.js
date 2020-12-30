@@ -3,11 +3,10 @@ import { StyleSheet, View, Text } from 'react-native';
 import {connect} from 'react-redux';
 
 
-function Post(data) {
-    console.log(data)
+function Post({data}) {
     return (
         <View style={styles.box}>
-            <Text>{data.body}</Text>
+            <Text style={styles.body}>{data.body}</Text>
         </View>
         
     )
@@ -15,10 +14,10 @@ function Post(data) {
 
 const styles = StyleSheet.create({
     box: {
-        width: '100%',
+        width: '90%',
         minHeight: 200,
-        backgroundColor: 'red',
-        margin: 5
+        backgroundColor: 'lightblue',
+        margin: 5,
     },
     body: {
         color: 'black',

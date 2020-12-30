@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {SecureStore} from 'expo';
+import * as SecureStore from 'expo-secure-store';
 import { StyleSheet, Text,TextInput, View, Button, TouchableOpacity } from 'react-native';
 import {connect} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
@@ -10,9 +10,10 @@ function SignIn({signIn, userData, token}) {
     var [form, setForm] = useState({})
     const navigation = useNavigation();
     const saveToken = async(token) => {
-        await SecureStore.setItemAsync('token', res.data.token);
+        console.log(SecureStore.isAvailableAsync())
+        await SecureStore.setItemAsync('token', token);
         var token = await SecureStore.getItemAsync('token');
-        console.log(token)
+        alert(token)
     }
     const handleSignIn = () => {
         axios.post('https://social-1.herokuapp.com/api/login', form).then(res => {

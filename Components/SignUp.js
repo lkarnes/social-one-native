@@ -48,7 +48,7 @@ const style = StyleSheet.create({
         fontSize: 30,
         color: 'white',
         marginLeft: 5,
-        fontWeight: 600,
+        fontWeight: '600',
     },
     form: {
         width: '95%',

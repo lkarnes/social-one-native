@@ -1,7 +1,7 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import {connect} from 'react-redux';
 import {fillFeed} from '../redux/actions';
 import axiosWithAuth from '../axiosWithAuth'
@@ -11,6 +11,8 @@ import Post from '../Components/Post';
 
 function Feed({userData, token, fillFeed, feedArray}) {
     const navigation = useNavigation();
+
+    const renderItem = ({item}) => (<Post data={item}/>);
     useEffect(() => {
         if(!token){
             navigation.navigate('Home')
@@ -27,7 +29,11 @@ function Feed({userData, token, fillFeed, feedArray}) {
     },[userData])
     return (
         <View>
-            {feedArray.map(post => <Post data={post}/>)}
+            <FlatList
+            data={feedArray}
+            renderItem = {renderItem}
+            keyExtractor = {item => item.id}
+            />
         </View>
     )
 }

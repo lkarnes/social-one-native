@@ -4,16 +4,20 @@ import { useEffect } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {connect} from 'react-redux';
 import {fillFeed} from '../redux/actions';
+import axiosWithAuth from '../axiosWithAuth'
+
+import Post from '../Components/Post';
 
 
-function Feed({userData, token, fillFeed}) {
+function Feed({userData, token, fillFeed, feedArray}) {
     const navigation = useNavigation();
     useEffect(() => {
         if(!token){
             navigation.navigate('Home')
           }
           if(userData.id){
-            axiosWithAuth().get(`/posts/recent/${userData.id}/0`).then(res => {
+            console.log(userData)
+            axiosWithAuth(token).get(`/posts/recent/${userData.id}/0`).then(res => {
               fillFeed(res.data)
               console.log(res.data)
           }).catch(err => {
@@ -23,7 +27,7 @@ function Feed({userData, token, fillFeed}) {
     },[userData])
     return (
         <View>
-            
+            {feedArray.map(post => <Post data={post}/>)}
         </View>
     )
 }

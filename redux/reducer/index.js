@@ -20,6 +20,7 @@ export const reducer = (state=initialState, action) => {
             return {
                 ...state,
                 userData: action.payload.userData,
+                token: action.payload.token,
             }
         case "ADD_POST":
             return {

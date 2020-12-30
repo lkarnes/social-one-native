@@ -1,18 +1,26 @@
 import React, {useState} from 'react';
+import * as SecureStore from 'expo-secure-store';
 import { StyleSheet, Text,TextInput, View, Button, TouchableOpacity } from 'react-native';
 import {connect} from 'react-redux';
 import { useNavigation } from '@react-navigation/native';
 import {signIn} from '../redux/actions';
 import axios from 'axios';
 
-function SignIn({signIn}) {
+function SignIn({signIn, userData, token}) {
     var [form, setForm] = useState({})
     const navigation = useNavigation();
+    const saveToken = async(token) => {
+        console.log(SecureStore.isAvailableAsync())
+        await SecureStore.setItemAsync('token', token);
+        var token = await SecureStore.getItemAsync('token');
+        alert(token)
+    }
     const handleSignIn = () => {
-        console.log(form)
         axios.post('https://social-1.herokuapp.com/api/login', form).then(res => {
             signIn(res.data);
-            navigation.navigate('Feed')
+            console.log(res.data)
+            saveToken(res.data.token)
+            navigation.navigate('Feed'); 
         }).catch(err => {
             alert("We didnt find an account with these credentials please try again.")
             console.log({err})
@@ -66,6 +74,7 @@ const style = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
- 
+    userData: state.userData,
+    token: state.token
 })
 export default connect(mapStateToProps, {signIn})(SignIn);

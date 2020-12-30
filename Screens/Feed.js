@@ -1,19 +1,25 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, FlatList } from 'react-native';
 import {connect} from 'react-redux';
 import {fillFeed} from '../redux/actions';
+import axiosWithAuth from '../axiosWithAuth'
+
+import Post from '../Components/Post';
 
 
-function Feed({userData, token, fillFeed}) {
+function Feed({userData, token, fillFeed, feedArray}) {
     const navigation = useNavigation();
+
+    const renderItem = ({item}) => (<Post data={item}/>);
     useEffect(() => {
         if(!token){
             navigation.navigate('Home')
           }
           if(userData.id){
-            axiosWithAuth().get(`/posts/recent/${userData.id}/0`).then(res => {
+            console.log(userData)
+            axiosWithAuth(token).get(`/posts/recent/${userData.id}/0`).then(res => {
               fillFeed(res.data)
               console.log(res.data)
           }).catch(err => {
@@ -23,14 +29,19 @@ function Feed({userData, token, fillFeed}) {
     },[userData])
     return (
         <View>
-            
+            <FlatList
+            data={feedArray}
+            renderItem = {renderItem}
+            keyExtractor = {item => item.id}
+            />
         </View>
     )
 }
 
 const mapStateToProps = state => ({
     userData : state.userData,
-    token: state.token
+    token: state.token,
+    feedArray: state.feedArray,
 })
 
 export default connect(mapStateToProps, {fillFeed})(Feed);

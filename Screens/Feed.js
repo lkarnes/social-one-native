@@ -30,6 +30,7 @@ function Feed({userData, token, fillFeed, feedArray}) {
     return (
         <View>
             <FlatList
+            style={styles.list}
             data={feedArray}
             renderItem = {renderItem}
             keyExtractor = {item => item.id}
@@ -37,6 +38,13 @@ function Feed({userData, token, fillFeed, feedArray}) {
         </View>
     )
 }
+
+const styles = StyleSheet.create({
+  list: {
+    display: 'flex',
+    flexDirection: 'column',
+  }
+})
 
 const mapStateToProps = state => ({
     userData : state.userData,

@@ -10,10 +10,11 @@ function SignIn({signIn, userData, token}) {
     var [form, setForm] = useState({})
     const navigation = useNavigation();
     const saveToken = async(token) => {
-        console.log(SecureStore.isAvailableAsync())
-        await SecureStore.setItemAsync('token', token);
-        var token = await SecureStore.getItemAsync('token');
-        alert(token)
+        if(SecureStore.isAvailableAsync()){
+            await SecureStore.setItemAsync('token', token);
+            var token = await SecureStore.getItemAsync('token');
+        }
+        console.log(token)
     }
     const handleSignIn = () => {
         axios.post('https://social-1.herokuapp.com/api/login', form).then(res => {

@@ -4,8 +4,10 @@ import {connect} from 'react-redux';
 
 
 function Post({data}) {
+    console.log(data)
     return (
         <View style={styles.box}>
+            {data.header?(<Text style={styles.header}>{data.header}</Text>):null}
             <Text style={styles.body}>{data.body}</Text>
         </View>
         
@@ -14,12 +16,20 @@ function Post({data}) {
 
 const styles = StyleSheet.create({
     box: {
-        width: '90%',
+        width: '97%',
         minHeight: 200,
         backgroundColor: 'lightblue',
-        margin: 5,
+        marginLeft: '1.5%',
+        marginTop: 8,
+    },
+    header: {
+        fontSize: 25,
+        width: '100%',
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
     },
     body: {
+        fontSize: 18,
         color: 'black',
     }
 })

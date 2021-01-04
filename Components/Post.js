@@ -1,15 +1,16 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import {connect} from 'react-redux';
-import {PostHeading} from './PostHeading';
+import PostHeading from './PostHeading';
 
 function Post({data}) {
-    console.log(data)
     return (
-        <View style={styles.box}>
-            <PostHeading id={data.id}/>
+        <View style={styles.box}> 
+
+            <PostHeading data={data}/>
             {data.header?(<Text style={styles.header}>{data.header}</Text>):null}
             <Text style={styles.body}>{data.body}</Text>
+
         </View>
     )
 }

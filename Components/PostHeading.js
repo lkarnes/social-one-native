@@ -2,11 +2,16 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StyleSheet, View, Text, Image} from 'react-native';
 import { useEffect } from 'react';
-import axiosWithAuth from '../axiosWithAuth'; 
 
-function PostHeading(props) {
+import axios from 'axios';
+import { useState } from 'react';
+
+function PostHeading({id, token, userData}) {
+    const [posterData, serPosterData] = useState();
     useEffect(() => {
-
+        axiosWithAuth(id).get(`/friends/${data.poster_id}`).then(res => {
+            setPosterData(res.data)
+        })
     }, [])
     return (
         <View>
@@ -15,6 +20,9 @@ function PostHeading(props) {
     )
 }
 
-const mapStateToProps
+const mapStateToProps = state => ({
+    userData: state.userData,
+    token: state.token
+})
 
 export default connect(mapStateToProps)(PostHeading)

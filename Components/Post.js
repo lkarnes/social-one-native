@@ -18,7 +18,7 @@ function Post({data}) {
 const styles = StyleSheet.create({
     box: {
         width: '97%',
-        minHeight: 200,
+        minHeight: 120,
         backgroundColor: 'lightblue',
         marginLeft: '1.5%',
         marginTop: 8,
@@ -31,7 +31,9 @@ const styles = StyleSheet.create({
     },
     body: {
         fontSize: 18,
-        color: 'black',
+        width: '98%',
+        color: '#696969',
+        margin: '0 auto',
     }
 })
 

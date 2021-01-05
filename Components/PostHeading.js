@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {connect} from 'react-redux';
 import {StyleSheet, View, Text, Image} from 'react-native';
 import { useEffect } from 'react';
@@ -7,19 +8,24 @@ import axiosWithAuth from '../axiosWithAuth';
 import { useState } from 'react';
 
 function PostHeading({data, token, userData}) {
+    const navigation = useNavigation();
     const [posterData, setPosterData] = useState();
     useEffect(() => {
         axiosWithAuth(token).get(`/friends/${data.poster_id}`).then(res => {
             setPosterData(res.data)
-            console.log(res.data)
         })
     }, [])
+
+    const handlePressProfile = () => {
+        alert('clicked')
+        navigation.navigate('Profile');
+    }
 
     return (
         <>
         {posterData?
             <View style={styles.box}>
-                <Image style={styles.logo} source={{uri:posterData.image}}/>
+                <Image onPress={handlePressProfile} style={styles.logo} source={{uri:posterData.image}}/>
                 <Text style={styles.username}>{posterData.username}</Text> 
             </View>
         :
@@ -38,7 +44,7 @@ const mapStateToProps = state => ({
 const styles = StyleSheet.create({
     box: {
         width: '100%',
-        backgroundColor: 'grey',
+        backgroundColor: '#96ccd4',
         display: 'flex',
         flexWrap: 'nowrap',
         flexDirection: 'row',

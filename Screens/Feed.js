@@ -3,19 +3,32 @@ import React from 'react';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import {connect} from 'react-redux';
-import {fillFeed} from '../redux/actions';
-import axiosWithAuth from '../axiosWithAuth'
+import jwt_decoded from 'jwt-decode';
+import {fillFeed, setToken} from '../redux/actions';
+import axiosWithAuth from '../axiosWithAuth';
+import * as SecureStore from 'expo-secure-store';
 
 import Post from '../Components/Post';
 
 
-function Feed({userData, token, fillFeed, feedArray}) {
+function Feed({userData, token, fillFeed, feedArray, setToken}) {
     const navigation = useNavigation();
 
     const renderItem = ({item}) => (<Post data={item}/>);
     useEffect(() => {
-        if(!token){
+        if(!token && !SecureStore.isAvailableAsync()){
             navigation.navigate('Home')
+          }else if(!token && SecureStore.isAvailableAsync()){
+            var retrievedToken = SecureStore.getItemAsync('token');
+            alert(retrievedToken);
+            if(!retrievedToken){
+              navigation.navigate('Home');
+            }else{
+              console.log('setting id and token')
+              setToken(retrievedToken);
+              var decoded = jwt_decoded(retrievedToken);
+              setId(decoded);
+            }
           }
           if(userData.id){
             console.log(userData)
@@ -52,4 +65,4 @@ const mapStateToProps = state => ({
     feedArray: state.feedArray,
 })
 
-export default connect(mapStateToProps, {fillFeed})(Feed);
+export default connect(mapStateToProps, {fillFeed, setToken})(Feed);

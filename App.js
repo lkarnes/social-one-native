@@ -12,6 +12,7 @@ import Home from './Screens/Home';
 import Feed from './Screens/Feed';
 const store = createStore(reducer);
 const Stack = createStackNavigator();
+
 export default function App() {
   return (
     <Provider store={store}>

@@ -80,6 +80,19 @@ export const reducer = (state=initialState, action) => {
             return {
                 ...initialState
             }
+        case "SET_TOKEN":
+            return {
+                ...state,
+                token : action.payload
+            }
+        case "SET_ID": 
+            return {
+                ...state,
+                userData : {
+                    ...state.userData,
+                    id: action.payload
+                }
+            }
         default:
             return state
         }

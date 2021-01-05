@@ -1,5 +1,8 @@
 This is the Social One Mobile App started on 12/7/2020
 
+token stored using secure store from expo
+
+
 colors 
 $primary : #51c3c9;
 // #CAC7E9

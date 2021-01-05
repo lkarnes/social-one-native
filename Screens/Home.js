@@ -19,11 +19,12 @@ const style = StyleSheet.create({
         height: '100%',
     },
     header: {
+        paddingTop: 20,
         color:'white',
         fontWeight: 'bold',
         textAlign:'center',
         width: '100%',
-        height: 45,
+        height: 60,
         backgroundColor: '#51c3c9',
         fontSize: 30,
     }

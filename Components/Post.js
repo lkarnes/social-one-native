@@ -1,26 +1,39 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import {connect} from 'react-redux';
-
+import PostHeading from './PostHeading';
 
 function Post({data}) {
     return (
-        <View style={styles.box}>
+        <View style={styles.box}> 
+
+            <PostHeading data={data}/>
+            {data.header?(<Text style={styles.header}>{data.header}</Text>):null}
             <Text style={styles.body}>{data.body}</Text>
+
         </View>
-        
     )
 }
 
 const styles = StyleSheet.create({
     box: {
-        width: '90%',
-        minHeight: 200,
+        width: '97%',
+        minHeight: 120,
         backgroundColor: 'lightblue',
-        margin: 5,
+        marginLeft: '1.5%',
+        marginTop: 8,
+    },
+    header: {
+        fontSize: 25,
+        width: '100%',
+        borderBottomColor: 'white',
+        borderBottomWidth: 1,
     },
     body: {
-        color: 'black',
+        fontSize: 18,
+        width: '98%',
+        color: '#696969',
+        margin: '0 auto',
     }
 })
 

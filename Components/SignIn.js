@@ -14,12 +14,10 @@ function SignIn({signIn, userData, token}) {
             await SecureStore.setItemAsync('token', token);
             var token = await SecureStore.getItemAsync('token');
         }
-        console.log(token)
     }
     const handleSignIn = () => {
         axios.post('https://social-1.herokuapp.com/api/login', form).then(res => {
             signIn(res.data);
-            console.log(res.data)
             saveToken(res.data.token)
             navigation.navigate('Feed'); 
         }).catch(err => {

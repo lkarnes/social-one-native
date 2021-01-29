@@ -5,7 +5,7 @@ import Login from '../Components/Login';
 export default function Home() {
     return (
         <View style={style.root}>
-         <Text style={style.header}>Welcome to SocialOne</Text>
+         <Text style={style.header}>Welcome to Social One</Text>
          <Login/>
         </View>
     )

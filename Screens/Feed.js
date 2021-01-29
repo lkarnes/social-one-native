@@ -3,6 +3,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { StyleSheet, Text, View, FlatList } from 'react-native';
 import {connect} from 'react-redux';
+import Header from './Header';
 import jwt_decoded from 'jwt-decode';
 import {fillFeed, setToken} from '../redux/actions';
 import axiosWithAuth from '../axiosWithAuth';
@@ -42,6 +43,7 @@ function Feed({userData, token, fillFeed, feedArray, setToken}) {
     },[userData])
     return (
         <View>
+            <Header/>
             <FlatList
             style={styles.list}
             data={feedArray}

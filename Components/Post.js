@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, Image, Dimensions } from 'react-native';
 import {connect} from 'react-redux';
 import PostHeading from './PostHeading';
 
@@ -10,6 +10,7 @@ function Post({data}) {
             <PostHeading data={data}/>
             {data.header?(<Text style={styles.header}>{data.header}</Text>):null}
             <Text style={styles.body}>{data.body}</Text>
+            {data.image?<Image style={styles.image} source={{uri: data.image}}/>:null}
 
         </View>
     )
@@ -33,8 +34,11 @@ const styles = StyleSheet.create({
         fontSize: 18,
         width: '98%',
         color: '#696969',
-        margin: '0 auto',
-    }
+    },
+    image: {
+        height: 300,
+        resizeMode: 'contain'
+      }
 })
 
 export default connect()(Post);

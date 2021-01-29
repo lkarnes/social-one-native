@@ -10,6 +10,9 @@ import 'react-native-gesture-handler';
 
 import Home from './Screens/Home';
 import Feed from './Screens/Feed';
+import Profile from './Screens/Profile';
+import Header from './Screens/Header';
+
 const store = createStore(reducer);
 const Stack = createStackNavigator();
 
@@ -17,12 +20,14 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        
         <Stack.Navigator
           screenOptions={{
             headerShown: false
           }}>
           <Stack.Screen name='Home' component={Home} />
           <Stack.Screen name='Feed' component={Feed} />
+          <Stack.Screen name='Profile' component={Profile} />
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
